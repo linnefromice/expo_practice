@@ -5,30 +5,42 @@ import { Content, Header, Left, Body, Right, Title, Footer, FooterTab, Button, I
 export default function App() {
   return (
     <Content padder>
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name='arrow-back' />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Expo Counter</Title>
-        </Body>
-        <Right>
-          <Button transparent>
-            <Icon name='menu' />
-          </Button>
-        </Right>
-      </Header>
+      <AppHeader/>
       <CountContent/>
-      <Footer>
-        <FooterTab>
-          <Body>
-            <Title>@linnefromice</Title>
-          </Body>
-        </FooterTab>
-      </Footer>
+      <AppFooter/>
     </Content>
+  );
+}
+
+const AppHeader = () => {
+  return (
+    <Header>
+      <Left>
+        <Button transparent>
+          <Icon name='arrow-back' />
+        </Button>
+      </Left>
+      <Body>
+        <Title>Expo Counter</Title>
+      </Body>
+      <Right>
+        <Button transparent>
+          <Icon name='menu' />
+        </Button>
+      </Right>
+    </Header>
+  );
+}
+
+const AppFooter = () => {
+  return (
+    <Footer>
+      <FooterTab>
+        <Body>
+          <Title>@linnefromice</Title>
+        </Body>
+      </FooterTab>
+    </Footer>
   );
 }
 
