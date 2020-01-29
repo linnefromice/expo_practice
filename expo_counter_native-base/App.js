@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Content, Header, Left, Body, Right, Title, Footer, FooterTab, Button, Icon } from 'native-base';
 
-export default function App() {
+const App = () => {
   return (
     <Content padder>
       <AppHeader/>
@@ -121,3 +121,5 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
+
+export default App;
