@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Content, Header, Left, Body, Right, Title, Footer, FooterTab, Button, Icon } from 'native-base';
+import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Content, Header, Left, Body, Right, Title, Footer, FooterTab, Button, Icon, Subtitle, Fab } from 'native-base';
 
 const App = () => {
   return (
@@ -22,6 +22,7 @@ const AppHeader = () => {
       </Left>
       <Body>
         <Title>Expo Counter</Title>
+        <Subtitle>Platform: {Platform.OS}</Subtitle>
       </Body>
       <Right>
         <Button transparent>
@@ -47,35 +48,53 @@ const AppFooter = () => {
 function CountContent() {
   const [count, setCount] = useState(0);
 
+  if (Platform.OS == 'ios' || Platform.OS == 'android') {
+    return (
+      <View>
+        <View style={styles.container}>
+          <CountArea value={count}/>
+        </View>
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <CountArea value={count}/>
+        <View style={styles.buttonsArea}>
+          <View style={styles.buttonArea}> 
+            <Button
+              block
+              info
+              large
+              onPress={() => setCount(count+1)}
+            >
+              <Text style={styles.buttonText}>PLUS / +</Text>
+            </Button>
+          </View>
+          <View style={styles.buttonArea}> 
+            <Button
+              block
+              warning
+              large
+              onPress={() => setCount(count-1)}
+            >
+              <Text style={styles.buttonText}>MINUS / -</Text>
+            </Button>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+const CountArea = ({value}) => {
   return (
     <View>
       <View style={styles.msgArea}>
         <Text style={styles.textMsg}>You have pushed the button this many times:</Text>
       </View>
       <View style={styles.countDisplayArea}>
-        <Text style={styles.textCount}>{count}</Text>
-      </View>
-      <View style={styles.buttonsArea}>
-        <View style={styles.buttonArea}> 
-          <Button
-            block
-            info
-            large
-            onPress={() => setCount(count+1)}
-          >
-            <Text style={styles.buttonText}>PLUS / +</Text>
-          </Button>
-        </View>
-        <View style={styles.buttonArea}> 
-          <Button
-            block
-            warning
-            large
-            onPress={() => setCount(count-1)}
-          >
-            <Text style={styles.buttonText}>MINUS / -</Text>
-          </Button>
-        </View>
+        <Text style={styles.textCount}>{value}</Text>
       </View>
     </View>
   );
@@ -85,8 +104,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   msgArea: {
     flex: 1,
