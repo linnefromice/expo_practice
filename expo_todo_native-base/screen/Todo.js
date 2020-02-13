@@ -117,6 +117,18 @@ const Todo = () => {
   const [text, setText] = useState("")
   const [recentId, setRecentId] = useState(masterTodoList.length)
 
+  function addNewTodo() {
+    const tmpList = todoList.slice();
+    const newId = recentId + 1;
+    tmpList.push({
+      id: newId,
+      content: text,
+      isDone: false,
+    });
+    setTodoList(tmpList);
+    setRecentId(newId);
+  }
+
   return (
     <Container>
       <HeaderPart/>
@@ -125,10 +137,14 @@ const Todo = () => {
           <Item>
             <Input
               placeholder="NEW TODO CONTENT"
+              onChangeText={setText}
+              value={text}
             />
           </Item>
           <Item>
-            <Button>
+            <Button
+              onPress={() => addNewTodo()}
+            >
               <Text>SUBMIT</Text>
             </Button>
           </Item>
