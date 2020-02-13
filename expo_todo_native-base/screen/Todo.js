@@ -7,9 +7,9 @@ let masterTodoList = [
   { id: 3, content: "test content 3", isDone: false }
 ]
 
-
+// TODOリストの1行を構築
 const TodoListItem = (data, todoList, setTodoList) => {
-  // TODO: use state
+  // TODOの削除
   function removeTodo(id) {
     const tmpList = todoList.slice();
     for (let i = 0; i < tmpList.length; i++) {
@@ -21,6 +21,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
     setTodoList(tmpList);
   }
 
+  // TODOを完了ステータスに変更
   function updateComplete(id) {
     const tmpList = todoList.slice();
     for (let i = 0; i < tmpList.length; i++) {
@@ -32,6 +33,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
     setTodoList(tmpList);
   }
 
+  // 完了更新ボタン
   const LeftButton = () => {
     return (
       <Left>
@@ -44,6 +46,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
     );
   }
 
+  // コンテンツ表示部
   const BodyContent = () => {
     return (
       <Body>
@@ -53,6 +56,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
     );
   }
 
+  // 削除ボタン
   const RightButton = () => {
     return (
       <Right>
@@ -74,6 +78,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
   );
 }
 
+// TODOリスト構築
 const TodoList = (todoList, setTodoList) => {
   return (
     <List>
@@ -82,6 +87,7 @@ const TodoList = (todoList, setTodoList) => {
   )
 }
 
+// Header構築
 const HeaderPart = () => {
   return (
     <Header>
@@ -94,6 +100,7 @@ const HeaderPart = () => {
   );
 }
 
+// TODOリスト全体
 const Todo = () => {
   const [todoList, setTodoList] = useState(masterTodoList.slice())
   const [text, setText] = useState("")
