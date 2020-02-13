@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button } from 'native-base';
+import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button, Form, Item, Input } from 'native-base';
 
 let masterTodoList = [
   { id: 1, content: "test content 1", isDone: false },
@@ -121,6 +121,18 @@ const Todo = () => {
     <Container>
       <HeaderPart/>
       <Content>
+        <Form>
+          <Item>
+            <Input
+              placeholder="NEW TODO CONTENT"
+            />
+          </Item>
+          <Item>
+            <Button>
+              <Text>SUBMIT</Text>
+            </Button>
+          </Item>
+        </Form>
         {TodoList(todoList, setTodoList)}
       </Content>
     </Container>
