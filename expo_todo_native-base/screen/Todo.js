@@ -111,9 +111,7 @@ const HeaderPart = () => {
   );
 }
 
-// TODOリスト全体
-const Todo = () => {
-  const [todoList, setTodoList] = useState(masterTodoList.slice())
+const NewTodoForm = (todoList, setTodoList) => {
   const [text, setText] = useState("")
   const [recentId, setRecentId] = useState(masterTodoList.length)
 
@@ -130,25 +128,34 @@ const Todo = () => {
   }
 
   return (
+    <Form>
+      <Item>
+        <Input
+          placeholder="NEW TODO CONTENT"
+          onChangeText={setText}
+          value={text}
+        />
+      </Item>
+      <Item>
+        <Button
+          onPress={() => addNewTodo()}
+        >
+          <Text>SUBMIT</Text>
+        </Button>
+      </Item>
+    </Form>
+  );
+}
+
+// TODOリスト全体
+const Todo = () => {
+  const [todoList, setTodoList] = useState(masterTodoList.slice())
+
+  return (
     <Container>
       <HeaderPart/>
       <Content>
-        <Form>
-          <Item>
-            <Input
-              placeholder="NEW TODO CONTENT"
-              onChangeText={setText}
-              value={text}
-            />
-          </Item>
-          <Item>
-            <Button
-              onPress={() => addNewTodo()}
-            >
-              <Text>SUBMIT</Text>
-            </Button>
-          </Item>
-        </Form>
+        {NewTodoForm(todoList, setTodoList)}
         {TodoList(todoList, setTodoList)}
       </Content>
     </Container>
