@@ -70,6 +70,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
   }
 
   if (data.isDone) {
+    // 完了ステータスのTODOは完了更新ボタンを表示しない
     return (
       <ListItem>
         <Left />
