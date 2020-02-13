@@ -1,10 +1,19 @@
 import React from 'react';
-import { Container, Text } from 'native-base';
+import { Container, Header, Left, Body, Title, Right, Content, Text } from 'native-base';
 
 const Todo = () => {
   return (
     <Container>
-      <Text>TODO APP</Text>
+       <Header>
+        <Left />
+        <Body>
+          <Title>TODO APP Header</Title>
+        </Body>
+        <Right />
+      </Header>
+      <Content>
+        <Text>TODO APP Content</Text>
+      </Content>
     </Container>
   );
 }
