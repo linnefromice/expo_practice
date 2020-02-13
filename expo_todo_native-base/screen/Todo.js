@@ -111,10 +111,12 @@ const HeaderPart = () => {
   );
 }
 
+// TODO登録フォーム構築
 const NewTodoForm = (todoList, setTodoList) => {
   const [text, setText] = useState("")
   const [recentId, setRecentId] = useState(masterTodoList.length)
 
+  // TODO登録機能
   function addNewTodo() {
     const tmpList = todoList.slice();
     const newId = recentId + 1;
