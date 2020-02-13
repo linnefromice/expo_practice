@@ -7,11 +7,37 @@ let masterTodoList = [
   { id: 3, content: "test content 3", isDone: false }
 ]
 
+
 const TodoListItem = (data) => {
+  // TODO: use state
+  function removeTodo(id) {
+    console.log(id); // TODO: delete debug code
+    for (let i = 0; i < masterTodoList.length; i++) {
+      if (id == masterTodoList[i].id) {
+        masterTodoList.splice(i, 1);
+        console.log(masterTodoList);
+        break;
+      }
+    }
+  }
+
+  function updateComplete(id) {
+    console.log(id); // TODO: delete debug code
+    for (let i = 0; i < masterTodoList.length; i++) {
+      if (id == masterTodoList[i].id) {
+        masterTodoList[i].isComplete = true;
+        console.log(masterTodoList); // TODO: delete debug code
+        break;
+      }
+    }
+  }
+
   return (
     <ListItem>
       <Left>
-        <Button info>
+        <Button info
+          onPress={() => updateComplete(data.id)}        
+        >
           <Text>DONE</Text>
         </Button>
       </Left>
@@ -20,7 +46,9 @@ const TodoListItem = (data) => {
         <Text>{data.content}</Text>
       </Body>
       <Right>
-        <Button dark>
+        <Button dark
+          onPress={() => removeTodo(data.id)}
+        >
           <Text>REMOVE</Text>
         </Button>
       </Right>
