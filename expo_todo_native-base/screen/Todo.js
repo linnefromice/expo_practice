@@ -31,20 +31,30 @@ const TodoListItem = (data, todoList, setTodoList) => {
     }
     setTodoList(tmpList);
   }
-  
-  return (
-    <ListItem>
+
+  const LeftButton = () => {
+    return (
       <Left>
-          <Button info
-            onPress={() => updateComplete(data.id)}        
-          >
-            <Text>DONE</Text>
-          </Button>
+        <Button info
+          onPress={() => updateComplete(data.id)}        
+        >
+          <Text>DONE</Text>
+        </Button>
       </Left>
+    );
+  }
+
+  const BodyContent = () => {
+    return (
       <Body>
         <Text>{data.id}</Text>
         <Text>{data.content}</Text>
       </Body>
+    );
+  }
+
+  const RightButton = () => {
+    return (
       <Right>
         <Button dark
           onPress={() => removeTodo(data.id)}
@@ -52,6 +62,14 @@ const TodoListItem = (data, todoList, setTodoList) => {
           <Text>REMOVE</Text>
         </Button>
       </Right>
+    );
+  }
+
+  return (
+    <ListItem>
+      <LeftButton />
+      <BodyContent />
+      <RightButton />
     </ListItem>
   );
 }
