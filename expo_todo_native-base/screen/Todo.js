@@ -26,7 +26,7 @@ const TodoListItem = (data, todoList, setTodoList) => {
     const tmpList = todoList.slice();
     for (let i = 0; i < tmpList.length; i++) {
       if (id == tmpList[i].id) {
-        tmpList[i].isComplete = true;
+        tmpList[i].isDone = true;
         break;
       }
     }
@@ -69,13 +69,23 @@ const TodoListItem = (data, todoList, setTodoList) => {
     );
   }
 
-  return (
-    <ListItem>
-      <LeftButton />
-      <BodyContent />
-      <RightButton />
-    </ListItem>
-  );
+  if (data.isDone) {
+    return (
+      <ListItem>
+        <Left />
+        <BodyContent />
+        <RightButton />
+      </ListItem>
+    );  
+  } else {
+    return (
+      <ListItem>
+        <LeftButton />
+        <BodyContent />
+        <RightButton />
+      </ListItem>
+    );  
+  }
 }
 
 // TODOリスト構築
