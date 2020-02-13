@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button } from 'native-base';
 
 let masterTodoList = [
@@ -8,38 +8,38 @@ let masterTodoList = [
 ]
 
 
-const TodoListItem = (data) => {
+const TodoListItem = (data, todoList, setTodoList) => {
   // TODO: use state
   function removeTodo(id) {
-    console.log(id); // TODO: delete debug code
-    for (let i = 0; i < masterTodoList.length; i++) {
-      if (id == masterTodoList[i].id) {
-        masterTodoList.splice(i, 1);
-        console.log(masterTodoList);
+    const tmpList = todoList.slice();
+    for (let i = 0; i < tmpList.length; i++) {
+      if (id == tmpList[i].id) {
+        tmpList.splice(i, 1);
         break;
       }
     }
+    setTodoList(tmpList);
   }
 
   function updateComplete(id) {
-    console.log(id); // TODO: delete debug code
-    for (let i = 0; i < masterTodoList.length; i++) {
-      if (id == masterTodoList[i].id) {
-        masterTodoList[i].isComplete = true;
-        console.log(masterTodoList); // TODO: delete debug code
+    const tmpList = todoList.slice();
+    for (let i = 0; i < tmpList.length; i++) {
+      if (id == tmpList[i].id) {
+        tmpList[i].isComplete = true;
         break;
       }
     }
+    setTodoList(tmpList);
   }
-
+  
   return (
     <ListItem>
       <Left>
-        <Button info
-          onPress={() => updateComplete(data.id)}        
-        >
-          <Text>DONE</Text>
-        </Button>
+          <Button info
+            onPress={() => updateComplete(data.id)}        
+          >
+            <Text>DONE</Text>
+          </Button>
       </Left>
       <Body>
         <Text>{data.id}</Text>
@@ -56,15 +56,19 @@ const TodoListItem = (data) => {
   );
 }
 
-const TodoList = (list) => {
+const TodoList = (todoList, setTodoList) => {
   return (
     <List>
-      {list.map(TodoListItem)}
+      {todoList.map((data) => TodoListItem(data, todoList, setTodoList))}
     </List>
   )
 }
 
 const Todo = () => {
+  const [todoList, setTodoList] = useState(masterTodoList.slice())
+  const [text, setText] = useState("")
+  const [recentId, setRecentId] = useState(masterTodoList.length)
+
   return (
     <Container>
        <Header>
@@ -75,7 +79,7 @@ const Todo = () => {
         <Right />
       </Header>
       <Content>
-        {TodoList(masterTodoList)}
+        {TodoList(todoList, setTodoList)}
       </Content>
     </Container>
   );
