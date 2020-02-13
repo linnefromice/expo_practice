@@ -7,6 +7,22 @@ let masterTodoList = [
   { id: 3, content: "test content 3", isDone: false }
 ]
 
+const TodoListItem = (data) => {
+  return (
+    <ListItem>
+      <Text>{data.content}</Text>
+    </ListItem>
+  );
+}
+
+const TodoList = (list) => {
+  return (
+    <List>
+      {list.map(TodoListItem)}
+    </List>
+  )
+}
+
 const Todo = () => {
   return (
     <Container>
@@ -18,17 +34,7 @@ const Todo = () => {
         <Right />
       </Header>
       <Content>
-        <List>
-          <ListItem>
-            <Text>{masterTodoList[0].content}</Text>
-          </ListItem>
-          <ListItem>
-            <Text>{masterTodoList[1].content}</Text>
-          </ListItem>
-          <ListItem>
-            <Text>{masterTodoList[2].content}</Text>
-          </ListItem>
-        </List>
+        {TodoList(masterTodoList)}
       </Content>
     </Container>
   );
