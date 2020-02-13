@@ -82,6 +82,18 @@ const TodoList = (todoList, setTodoList) => {
   )
 }
 
+const HeaderPart = () => {
+  return (
+    <Header>
+      <Left />
+      <Body>
+        <Title>TODO APP Header</Title>
+      </Body>
+      <Right />
+    </Header>
+  );
+}
+
 const Todo = () => {
   const [todoList, setTodoList] = useState(masterTodoList.slice())
   const [text, setText] = useState("")
@@ -89,13 +101,7 @@ const Todo = () => {
 
   return (
     <Container>
-       <Header>
-        <Left />
-        <Body>
-          <Title>TODO APP Header</Title>
-        </Body>
-        <Right />
-      </Header>
+      <HeaderPart/>
       <Content>
         {TodoList(todoList, setTodoList)}
       </Content>
