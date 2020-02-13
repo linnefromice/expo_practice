@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem } from 'native-base';
+import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button } from 'native-base';
 
 let masterTodoList = [
   { id: 1, content: "test content 1", isDone: false },
@@ -10,7 +10,20 @@ let masterTodoList = [
 const TodoListItem = (data) => {
   return (
     <ListItem>
-      <Text>{data.content}</Text>
+      <Left>
+        <Button info>
+          <Text>DONE</Text>
+        </Button>
+      </Left>
+      <Body>
+        <Text>{data.id}</Text>
+        <Text>{data.content}</Text>
+      </Body>
+      <Right>
+        <Button dark>
+          <Text>REMOVE</Text>
+        </Button>
+      </Right>
     </ListItem>
   );
 }
