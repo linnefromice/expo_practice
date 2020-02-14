@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button, Form, Item, Input } from 'native-base';
+import { View } from 'react-native';
+import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button } from 'native-base';
 import { observer } from 'mobx-react';
 
 import store from '../store/todoStore';
@@ -24,6 +25,24 @@ const TodoMobX = observer(() => {
 
   function updateCompleteTodo(id) {
     store.updateCompleteTodo(id);
+  }
+
+  const AddNewTodoArea = () => {
+    return (
+      <View>
+        <TextInput
+          label="TODO Title"
+          placeholder="Please input todo title."
+          value={inputText}
+          onChangeText={text => setInputText(text)}
+        />
+        <Button info
+          onPress={() => addNewTodo()}
+        >
+          <Text>SUBMIT</Text>
+        </Button>
+      </View>
+    )
   }
 
 
@@ -90,17 +109,7 @@ const TodoMobX = observer(() => {
         <Right />
       </Header>
       <Content>
-        <TextInput
-          label="TODO Title"
-          placeholder="Please input todo title."
-          value={inputText}
-          onChangeText={text => setInputText(text)}
-        />
-        <Button info
-          onPress={() => addNewTodo()}
-        >
-          <Text>SUBMIT</Text>
-        </Button>        
+        {AddNewTodoArea()}
         <List>
           {store.todoList.map((data) => TodoListItem(data))}
         </List>
