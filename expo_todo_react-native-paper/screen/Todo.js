@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import { List } from 'react-native-paper'
+import { List, Button } from 'react-native-paper'
 
 let masterTodoList = [
   { id: 1, content: "test content 1", isDone: false },
@@ -12,6 +12,20 @@ const TodoListItem = (todo) => {
   return (
     <List.Item
       title={todo.content}
+      left={() => (
+        <Button
+          onPress={() => console.log("DONE")}
+        >
+          DONE
+        </Button>
+      )}
+      right={() => (
+        <Button
+          onPress={() => console.log("DELETE")}
+        >
+          DELETE
+        </Button>
+      )}
     />
   );
 }
