@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Header, Left, Body, Title, Right, Content, Text, List, ListItem, Button, Form, Item, Input } from 'native-base';
 import { observer } from 'mobx-react';
 
 import store from '../store/todoStore';
+import { TextInput } from 'react-native';
 
 const TodoMobX = observer(() => {
+  const [inputText, setInputText] = useState('');
+
   function addNewTodo() {
     store.incrementRecentId();
     const tmpTodo = {
       id: store.recentId,
-      content: "ADD TODO using MobX : No." + store.recentId.toString(),
+      content: inputText,
       isDone: false
     }
     store.addNewTodo(tmpTodo);
@@ -87,6 +90,12 @@ const TodoMobX = observer(() => {
         <Right />
       </Header>
       <Content>
+        <TextInput
+          label="TODO Title"
+          placeholder="Please input todo title."
+          value={inputText}
+          onChangeText={text => setInputText(text)}
+        />
         <Button info
           onPress={() => addNewTodo()}
         >
