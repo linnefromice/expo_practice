@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Appbar } from 'react-native-paper';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View>
+      <Appbar.Header>
+        <Appbar.Content
+          title="Todo App"
+          subtitle="using expo / react-native-paper"
+        />
+      </Appbar.Header>
     </View>
   );
 }
