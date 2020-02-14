@@ -6,10 +6,10 @@ import store from '../store/todoStore';
 
 const TodoMobX = observer(() => {
   function addNewTodo() {
-    const nextId = store.todoList.length + 1;
+    store.incrementRecentId();
     const tmpTodo = {
-      id: nextId,
-      content: "ADD TODO using MobX : No." + nextId.toString(),
+      id: store.recentId,
+      content: "ADD TODO using MobX : No." + store.recentId.toString(),
       isDone: false
     }
     store.addNewTodo(tmpTodo);
