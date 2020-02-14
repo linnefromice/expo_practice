@@ -8,21 +8,27 @@ let masterTodoList = [
   { id: 3, content: "test content 3", isDone: false }
 ]
 
+const TodoListItem = (todo) => {
+  return (
+    <List.Item
+      title={todo.content}
+    />
+  );
+}
+
+const TodoList = (todoList) => {
+  return (
+    <List.Section>
+      <List.Subheader>TODO LIST</List.Subheader>
+      {todoList.map(TodoListItem)}
+    </List.Section>
+  );
+}
+
 const Todo = () => {
   return (
     <View>
-      <List.Section>
-        <List.Subheader>TODO LIST</List.Subheader>
-        <List.Item
-          title={masterTodoList[0].content}
-        />
-        <List.Item
-          title={masterTodoList[1].content}
-          />
-        <List.Item
-          title={masterTodoList[2].content}
-          />
-      </List.Section>
+      {TodoList(masterTodoList)}
     </View>
   );
 }
