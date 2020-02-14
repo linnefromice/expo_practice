@@ -5,28 +5,6 @@ import { observer } from 'mobx-react';
 import store from '../store/todoStore';
 
 const TodoMobX = observer(() => {
-
-  const TodoListItem = (data) => {
-    return (
-      <ListItem>
-        <Left>
-          <Button info>
-            <Text>DONE</Text>
-          </Button>
-        </Left>
-        <Body>
-          <Text>{data.id}</Text>
-          <Text>{data.content}</Text>
-        </Body>
-        <Right>
-          <Button dark>
-            <Text>REMOVE</Text>
-          </Button>
-        </Right>
-      </ListItem>
-    );
-  }
-
   function addNewTodo() {
     const nextId = store.todoList.length + 1;
     const tmpTodo = {
@@ -37,6 +15,39 @@ const TodoMobX = observer(() => {
     store.addNewTodo(tmpTodo);
   }
 
+  function removeTodo(id) {
+    store.removeTodo(id);
+  }
+
+  function updateCompleteTodo(id) {
+    store.updateCompleteTodo(id);
+  }
+
+  const TodoListItem = (data) => {
+    return (
+      <ListItem>
+        <Left>
+          <Button info
+            onPress={() => updateCompleteTodo(data.id)}
+          >
+            <Text>DONE</Text>
+          </Button>
+        </Left>
+        <Body>
+          <Text>{data.id}</Text>
+          <Text>{data.content}</Text>
+        </Body>
+        <Right>
+          <Button dark
+            onPress={() => removeTodo(data.id)}
+          >
+            <Text>REMOVE</Text>
+          </Button>
+        </Right>
+      </ListItem>
+    );
+  }
+  
   return (
     <Container>
       <Header>
