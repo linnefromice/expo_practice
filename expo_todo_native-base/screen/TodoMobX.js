@@ -58,13 +58,23 @@ const TodoMobX = observer(() => {
       );
     }
 
-    return (
-      <ListItem>
-        <LeftButton/>
-        <BodyContent/>
-        <RightButton/>
-      </ListItem>
-    );
+    if (data.isDone) {
+      return (
+        <ListItem>
+          <Left/>
+          <BodyContent/>
+          <RightButton/>
+        </ListItem>
+      );
+    } else {
+      return (
+        <ListItem>
+          <LeftButton/>
+          <BodyContent/>
+          <RightButton/>
+        </ListItem>
+      );
+    }
   }
   
   return (
