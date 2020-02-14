@@ -9,10 +9,20 @@ const TodoMobX = observer(() => {
   const TodoListItem = (data) => {
     return (
       <ListItem>
+        <Left>
+          <Button info>
+            <Text>DONE</Text>
+          </Button>
+        </Left>
         <Body>
           <Text>{data.id}</Text>
           <Text>{data.content}</Text>
         </Body>
+        <Right>
+          <Button dark>
+            <Text>REMOVE</Text>
+          </Button>
+        </Right>
       </ListItem>
     );
   }
