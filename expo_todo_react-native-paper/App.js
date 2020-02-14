@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import Todo from './screen/Todo';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
           subtitle="using expo / react-native-paper"
         />
       </Appbar.Header>
+      <Todo/>
     </View>
   );
 }
