@@ -23,9 +23,10 @@ const TodoMobX = observer(() => {
     store.updateCompleteTodo(id);
   }
 
+
   const TodoListItem = (data) => {
-    return (
-      <ListItem>
+    const LeftButton = () => {
+      return (
         <Left>
           <Button info
             onPress={() => updateCompleteTodo(data.id)}
@@ -33,10 +34,20 @@ const TodoMobX = observer(() => {
             <Text>DONE</Text>
           </Button>
         </Left>
+      );
+    }
+
+    const BodyContent = () => {
+      return (
         <Body>
           <Text>{data.id}</Text>
           <Text>{data.content}</Text>
         </Body>
+      );
+    }
+
+    const RightButton = () => {
+      return (
         <Right>
           <Button dark
             onPress={() => removeTodo(data.id)}
@@ -44,6 +55,14 @@ const TodoMobX = observer(() => {
             <Text>REMOVE</Text>
           </Button>
         </Right>
+      );
+    }
+
+    return (
+      <ListItem>
+        <LeftButton/>
+        <BodyContent/>
+        <RightButton/>
       </ListItem>
     );
   }
